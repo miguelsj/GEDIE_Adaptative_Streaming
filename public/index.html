@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="./icon/favicon.ico" type="image/x-icon">
+    <title>FitTube</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/main.css">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- TensorFlow Js & PoseNet -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+
+    <!-- Web Speech Js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Custom Js -->
+    <script src="./js/video.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/textTrack.js"></script>
+    <script src="./js/nav.js"></script>
+    <script src="./js/carousel.js"></script>
+    <script src="./js/camera.js"></script>
+    <script src="./js/voice.js"></script>
+
+    <!-- Dash Js -->
+    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+
+    <!-- Hls Js -->
+    <script src="//cdn.jsdelivr.net/npm/hls.js@1"></script>
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
+            <div id="main-header" class="container">
+                <a id="logo-container" class="navbar-brand" href="#">
+                    <img src="./img/logo.png" alt="Logo FitTube">
+                </a>
+
+                <h1 class="navbar-text">FitTube</h1>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-light active" aria-current="page" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#">Personaliza tu rutina</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Separator container -->
+    <div id="dark-container" class="container-fluid mb-4"></div>
+
+    <!-- Main container -->
+    <main clas="container">
+        <div class="row">
+            <!-- Index container -->
+            <aside id="index-container" class="col-12 col-md-4 col-lg-2 pr-2"></aside>
+
+            <!-- Video Player -->
+            <section id="video-container" class="col-12 col-md-8 col-lg-6 position-relative">
+                <video id="video-player">
+                    <!-- <audio id="audio-player" src="./audio/rock.mp3" preload="auto"></audio> -->
+                    <source src=".\video\mp4\4K\fll_video_4k.mp4" type="video/mp4">
+                    <source src="" type="video/webm">
+                    <track id="chapter-track" kind="chapters" label="chapters" src="./vtt/chapters/full_video.vtt"
+                        onload="loadChapters()">
+                    <track id="description-track" kind="descriptions" label="descriptions"
+                        src="./vtt/descriptions/full_video.vtt">
+                    <track id="subtitle-track" kind="subtitles" label="subtitles" srclang="es"
+                        src="./vtt/subtitles/full_video.vtt">
+                    <track id="metadata-track" kind="metadata" label="metadata" srclang="es"
+                        src="./vtt/metadata/full_video.vtt">
+
+                    Tu navegador no soporta la reproducción de videos.
+                </video>
+                <canvas id="video-player-canvas" style="display:none;"></canvas>
+
+
+                <div class="play-icon"><i class="fas fa-play"></i></div>
+
+                <div id="btn-container">
+                    <img id="frame-img">
+                    <div id="time-container"></div>
+                    <button id="btn-play" class="btn btn-dark btn-config btn-video"><i class="fas fa-play"></i></button>
+                    <button id="btn-pause" class="btn btn-dark btn-config btn-video"><i
+                            class="fas fa-pause"></i></button>
+                    <button id="btn-cc" class="btn btn-dark btn-config"><i
+                            class="fa-solid fa-closed-captioning"></i></button>
+                    <select id="resolution-select" class="btn btn-dark btn-config">
+                        <!-- <option value="1080">1080p</option>
+                        <option value="720">720p</option>
+                        <option value="2K">2K</option>
+                        <option value="4K">4K</option>  -->
+                        <option value="Auto">Auto</option>
+                        <!-- <option value="Hls">Hls</option>
+                        <option value="Dash">Dash</option> -->
+                    </select>
+                    <button id="btn-sound" class="btn btn-dark btn-volume btn-config"><i
+                            class="fa-solid fa-volume-high"></i></button>
+                    <button id="btn-mute" class="btn btn-dark btn-volume btn-config"><i
+                            class="fa-solid fa-volume-xmark"></i></button>
+                    <input id="volume-range" class="btn-config" type="range" min="0" max="1" step="0.1" value="1"
+                        class="form-range">
+
+                    <button id="btn-omit" class="btn btn-dark">Saltar descanso</button>
+                    <button id="btn-full" class="btn btn-dark btn-config"><i class="fa-solid fa-expand"></i></button>
+                    <select id="quality-select" class="btn btn-dark btn-config">
+                        <option value="0">360</option>
+                        <option value="1">720</option>
+                        <option value="2">1080</option>
+                        <option value="3">2k</option>
+                        <option value="4">4k</option>
+                        <option value="5" selected>Auto</option>
+                    </select>
+
+                </div>
+                <!-- Contenedor de texto -->
+                <div id="music-text" class="text-center"></div>
+            </section>
+
+            <!-- Description container -->
+            <aside id="description-container" class="col-12 col-md-12 col-lg-4 pl-2">
+                <nav id="description-nav">
+                    <ul class="nav nav-tabs">
+                        <li id="description-nav-item" class="nav-item">
+                            <a class="nav-link" href="#" data-target="exercise-description">Descripción del
+                                ejercicio</a>
+                        </li>
+                        <li id="muscles-nav-item" class="nav-item">
+                            <a class="nav-link" href="#" data-target="muscles-involved">Músculos implicados</a>
+                        </li>
+                        <li id="trainer-nav-item" class="nav-item">
+                            <a class="nav-link active" href="#" data-target="user-camera">Entrenador virtual</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div id="exercise-description-container" class="container-fluid h-100" style="display: none;"></div>
+
+                <div id="muscles-involved-container" class="container-fluid h-100" style="display: none;">
+                    <div class="row justify-content-around">
+                        <div class="image-container">
+                            <img id="muscle-front" class="muscle-view" alt="Músculos implicados frontales">
+                        </div>
+                        <div class="image-container">
+                            <img id="muscle-back" class="muscle-view" alt="Músculos implicados traseros">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="user-camera-container" class="container-fluid h-100">
+                    <video id="user-video" autoplay playsinline></video>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <div class="text-right mt-3">
+        <div id="debug-info" style="display: none;"></div>
+        <div id="trainer-info"></div>
+    </div>
+
+
+    <!-- Bottom container -->
+    <div id="bottom-container" class="container-fluid fixed-bottom">
+        <nav id="nav-container">
+            <ul class="nav nav-tabs">
+                <li id="routines-nav-item" class="nav-item">
+                    <a class="nav-link active" href="#" data-target="routines">Rutinas</a>
+                </li>
+                <li id="custom-nav-item" class="nav-item">
+                    <a class="nav-link" href="#" data-target="custom">Personaliza tu rutina</a>
+                </li>
+                <i id="arrow-up" class="fa-solid fa-arrow-up"></i>
+            </ul>
+        </nav>
+
+        <!-- routines-container -->
+        <div id="routines-container" class="container-fluid">
+
+            <div class="row justify-content-around align-items-center">
+                <i class="fa fa-arrow-left carousel-arrow"></i>
+                <div class="image-container">
+                    <img src="./img/ExampleVideo1.png" class="routine-img" data-name="gym_routine"
+                        alt="Rutina de gimnasio">
+                    <div class="play-icon"><i class="fas fa-play"></i></div>
+                    <div class="overlay"></div>
+                </div>
+
+                <!-- <div class="image-container d-none">
+                    <img src="./img/ExampleVideo2.png" class="routine-img" data-name="home_routine"
+                        alt="Rutina de casa">
+                    <div class="play-icon"><i class="fas fa-play"></i></div>
+                    <div class="overlay"></div>
+                </div> -->
+
+                <div class="image-container d-none">
+                    <img src="./img/miniaturas/fullcardio.png" class="routine-img" data-name="cardio_routine"
+                        alt="Rutina de cardio">
+                    <div class="play-icon"><i class="fas fa-play"></i></div>
+                    <div class="overlay"></div>
+                </div>
+                <i class="fa fa-arrow-right carousel-arrow"></i>
+            </div>
+
+        </div>
+
+        <!-- Imágenes para la opción "Personaliza tu rutina" -->
+        <div id="custom-container" class="container-fluid" style="display: none;">
+            <div class="row justify-content-around align-items-center">
+                <i class="fa fa-arrow-left carousel-arrow-custom"></i>
+                <div class="custom-container">
+                    <img src="./img/miniaturas/abs.png" class="routine-img" data-exercise="abs">
+                    <div class="add-icon"><i class="fa-solid fa-plus"></i></div>
+                    <div class="overlay"></div>
+                </div>
+
+                <div class="custom-container d-none">
+                    <img src="./img/miniaturas/calentamiento.png" class="routine-img" data-exercise="calentamiento">
+                    <div class="add-icon"><i class="fa-solid fa-plus"></i></div>
+                    <div class="overlay"></div>
+                </div>
+
+                <div class="custom-container d-none">
+                    <img src="./img/miniaturas/cardio.png" class="routine-img" data-exercise="cardio">
+                    <div class="add-icon"><i class="fa-solid fa-plus"></i></div>
+                    <div class="overlay"></div>
+                </div>
+
+                <div class="custom-container d-none">
+                    <img src="./img/miniaturas/jalon.png" class="routine-img" data-exercise="jalon">
+                    <div class="add-icon"><i class="fa-solid fa-plus"></i></div>
+                    <div class="overlay"></div>
+                </div>
+
+                <div class="custom-container d-none">
+                    <img src="./img/miniaturas/remo_mancuerna.png" class="routine-img" data-exercise="remo_mancuerna">
+                    <div class="add-icon"><i class="fa-solid fa-plus"></i></div>
+                    <div class="overlay"></div>
+                </div>
+
+                <div class="custom-container d-none">
+                    <img src="./img/miniaturas/sentadilla_barra.png" class="routine-img"
+                        data-exercise="sentadilla_barra">
+                    <div class="add-icon"><i class="fa-solid fa-plus"></i></div>
+                    <div class="overlay"></div>
+                </div>
+
+                <div class="custom-container d-none">
+                    <img src="./img/miniaturas/sentadillas.png" class="routine-img" data-exercise="sentadillas">
+                    <div class="add-icon"><i class="fa-solid fa-plus"></i></div>
+                    <div class="overlay"></div>
+                </div>
+
+                <div class="custom-container d-none">
+                    <img src="./img/miniaturas/triceps_polea.png" class="routine-img" data-exercise="triceps_polea">
+                    <div class="add-icon"><i class="fa-solid fa-plus"></i></div>
+                    <div class="overlay"></div>
+                </div>
+                <i class="fa fa-arrow-right carousel-arrow-custom"></i>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,491 @@
+/*************************************
+                GENERAL
+*************************************/
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-Medium.ttf') format('truetype');
+}
+
+header {
+    background-color: #17191b !important;
+}
+
+body {
+    background-color: #17191b !important;
+    font-family: 'Montserrat';
+    max-height: 100vh;
+    /* overflow-y: hidden; */
+}
+
+/*************************************
+                HEADER
+*************************************/
+
+#logo-container img {
+    align-items: center;
+    width: 75px;
+    height: 75px;
+}
+
+/*************************************
+               SEPARATOR
+*************************************/
+
+#dark-container {
+    height: 2rem;
+    background-color: #0c0c0c;
+}
+
+/*************************************
+               MAIN
+*************************************/
+
+main {
+    margin: 0 2rem;
+}
+
+/*************************************
+            INDEX CONTAINER
+*************************************/
+
+#index-container div {
+    color: white;
+    background-color: #292a2b;
+    border: 1px solid #FF5733;
+    height: auto;
+    width: 97%;
+    margin-bottom: 1.5rem;
+}
+
+#index-container div i {
+    float: right;
+}
+
+#index-container .icon {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    color: #fff;
+}
+
+#index-container div:hover {
+    background-color: #FF5733;
+    border-color: #FF5733;
+    cursor: pointer;
+}
+
+/*************************************
+               VIDEO
+*************************************/
+
+#video-container {
+    position: relative;
+}
+
+#video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: auto;
+    max-width: 100%;
+}
+
+.muscle-img {
+    width: auto;
+    height: 100%;
+    opacity: 0.7;
+}
+
+#video-container:hover {
+    cursor: pointer;
+}
+
+#video-container .play-icon {
+    display: none;
+    font-size: 24px;
+    transition: all 0.5s ease-in-out;
+    opacity: 1;
+}
+
+#btn-container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 999;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+#btn-container button:hover {
+    opacity: 1 !important;
+}
+
+#btn-container:hover #resolution-select {
+    opacity: 1 !important;
+}
+
+#video-container:hover .btn-config {
+    animation: fadeIn 0.2s ease;
+    opacity: 0.75;
+}
+
+#video-container:not(:hover) .btn-config {
+    animation: fadeOut 0.5s ease;
+    opacity: 0;
+}
+
+.btn-config {
+    background-color: #EC4D37 !important;
+    opacity: 0;
+}
+
+#btn-pause {
+    display: none;
+}
+
+#btn-omit {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 4.5rem !important;
+    opacity: 0.5;
+    display: none;
+}
+
+#btn-full {
+    position: absolute;
+    right: 0.5rem;
+}
+
+#btn-mute {
+    display: none;
+}
+
+#btn-music.clicked {
+    background-color: red !important;
+}
+
+.btn-primary {
+    background-color: red !important;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+#time-container {
+    display: flex;
+}
+
+.time-chapter:hover {
+    opacity: 1 !important;
+    background-color: white !important;
+}
+
+.time-chapter {
+    height: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: #C3C5C7 !important;
+}
+
+.time-bar {
+    height: 100%;
+    background-color: #EC4D37;
+    width: 0;
+}
+
+#frame-img {
+    position: absolute;
+    bottom: 4.5rem !important;
+    width: 10rem;
+    height: auto;
+    display: none;
+}
+
+/*************************************
+               AUDIO
+*************************************/
+
+#volume-range {
+    width: 10rem !important;
+    background-color: transparent !important;
+}
+
+/*************************************
+        DESCRIPTION CONTAINER
+*************************************/
+
+#description-container {
+    color: white;
+    text-align: justify;
+    align-items: top;
+}
+
+#description-nav .nav-link.active {
+    background-color: #EC4D37;
+    color: white;
+
+}
+
+#description-nav .nav-tabs {
+    border-bottom: 2px solid #EC4D37 !important;
+    display: flex;
+    align-items: flex;
+}
+
+#description-nav .nav-link {
+    color: white;
+}
+
+#description-nav .nav-link:hover {
+    color: white;
+}
+
+/*************************************
+           BOTTOM CONTAINER
+*************************************/
+
+#bottom-container {
+    position: fixed;
+    bottom: 0;
+    transition: height 1s ease-in-out;
+    background-color: #0C0C0C;
+    display: grid;
+}
+
+/*************************************
+             BOTTOM NAV
+*************************************/
+
+#nav-container a {
+    color: #fff;
+}
+
+#nav-container a.active {
+    background-color: #EC4D37;
+}
+
+#nav-container .nav-tabs {
+    border-bottom: 2px solid #EC4D37 !important;
+    display: flex;
+    align-items: center;
+}
+
+#nav-container .nav-link.active {
+    border-color: #EC4D37 #EC4D37 #EC4D37 !important;
+}
+
+#arrow-up {
+    position: absolute;
+    right: 2rem;
+    font-size: x-large;
+    color: #fff;
+}
+
+#arrow-up:hover {
+    cursor: pointer;
+}
+
+/*************************************
+            VIDEO SELECTOR
+*************************************/
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(71, 71, 71, 0.7);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.image-container {
+    position: relative;
+}
+
+.image-container img {
+    height: 25vh;
+}
+
+.image-container:hover .overlay {
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-container {
+    position: relative;
+}
+
+.custom-container img {
+    height: 25vh;
+}
+
+.custom-container:hover .overlay {
+    opacity: 0;
+    cursor: pointer;
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 9999;
+}
+
+.play-icon i {
+    font-size: 48px;
+    color: white;
+}
+.add-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 9999;
+}
+
+.add-icon i {
+    font-size: 48px;
+    color: white;
+}
+
+.play-icon:hover{
+    cursor: pointer;
+}
+
+.add-icon:hover{
+    cursor: pointer;
+}
+
+.image-container:hover .play-icon {
+    opacity: 1;
+}
+
+.custom-container:hover .add-icon {
+    opacity: 1;
+}
+
+/*************************************
+              CAROUSEL
+*************************************/
+
+.carousel-arrow {
+    font-size: xx-large;
+    color: #EC4D37;
+}
+
+.carousel-arrow:hover {
+    cursor: pointer;
+}
+
+.carousel-arrow-custom {
+    font-size: xx-large;
+    color: #EC4D37;
+}
+
+.carousel-arrow-custom:hover {
+    cursor: pointer;
+}
+
+/*************************************
+              GENRE TEXT
+*************************************/
+#music-text {
+    z-index: 9999;
+    font-size: 2em;
+    /* Tamaño de fuente más grande */
+    color: orangered;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    font-size: 48px;
+
+}
+
+#music-text.show-text {
+    opacity: 1;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* BOTON DEBUG */
+#debug-button-container {
+    text-align: center;
+    margin-top: 20px; /* Espacio adicional arriba del botón */
+}
+
+#btn-debug {
+    background-color: #2c3e50; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espacio interno */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.hls-color {
+    background-color: blue !important; /* Color azul para HLS */
+}
+
+.dash-color {
+    background-color: green !important; /* Color verde para DASH */
+}
+
+#debug-info {
+    border: 2px solid green; /* Borde verde */
+    color: red; /* Texto rojo */
+    padding: 10px; /* Espaciado interno */
+    text-align: center;
+    font-size: 20px;
+}
+
+.green-text {
+    color: green; /* Color verde */
+}
+
+.blue-text {
+    color: blue; /* Color verde */
+}
+
+/*************************************
+              CAMERA
+*************************************/
+
+#user-video {
+    width: 100%;
+    height: auto;
+}
+
+#trainer-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xxx-large;
+    font-family: fantasy;
+    color: #fff
+}

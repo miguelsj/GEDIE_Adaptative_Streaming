@@ -1,0 +1,81 @@
+WEBVTT
+
+chapter-1
+00:00:00.000 --> 00:01:00.000
+{
+    "exercise": "descanso"
+}
+
+chapter-2
+00:01:00.001 --> 00:01:14.000
+{
+    "muscle": "cardio",
+    "exercise": "calentamiento",
+    "keyPoints": [
+        "leftKnee",
+        "rightKnee",
+        "leftWrist",
+        "rightWrist",
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftHip",
+        "rightHip"
+    ]
+}
+
+chapter-3
+00:01:15.000 --> 00:01:26.000
+{
+    "muscle": "piernas",
+    "exercise": "sentadillas"
+}
+
+chapter-4
+00:01:27.000 --> 00:01:38.000
+{
+    "muscle": "cardio_plus",
+    "exercise": "cardio"
+}
+
+chapter-5
+00:01:39.000 --> 00:01:47.000
+{
+    "muscle": "abs",
+    "exercise": "abs"
+}
+
+chapter-6
+00:01:48.000 --> 00:02:00.000
+{
+    "muscle": "dorsal",
+    "exercise": "jalon"
+}
+
+chapter-7
+00:02:02.000 --> 00:02:15.000
+{
+    "muscle": "dorsal",
+    "exercise": "remo_mancuerna"
+}
+
+chapter-8
+00:02:16.000 --> 00:02:31.000
+{
+    "muscle": "triceps",
+    "exercise": "triceps_polea"
+}
+
+chapter-9
+00:02:33.000 --> 00:02:39.000
+{
+    "muscle": "piernas",
+    "exercise": "sentadilla_barra"
+}
+
+chapter-10
+00:03:02.000 --> 00:04:30.000
+{
+    "exercise": "fullcardio"
+}
